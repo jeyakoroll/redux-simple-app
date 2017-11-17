@@ -7,12 +7,13 @@ import App from './containers/App';
 import configureStore from './store/configureStore';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore( () => {}, {} ) 
+const store = configureStore() 
 
 render(
   <Provider store={store}>
     <App />
   </Provider>,
    document.getElementById('root')
-);
-registerServiceWorker();
+)
+
+registerServiceWorker()
