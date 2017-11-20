@@ -11,7 +11,9 @@ const store = configureStore()
 
 render(
   <Provider store={store}>
-    <App />
+    <div className='app'>
+     <App />
+    </div>
   </Provider>,
    document.getElementById('root')
 )

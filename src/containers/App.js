@@ -12,7 +12,7 @@ import * as pageActions from '../actions/PageActions';
 class App extends Component {
   render() {
     const { user, page } = this.props
-    const { setYear } = this.props.pageActions
+    const { getPhotos } = this.props.pageActions
     return (
       <div className="App">
         <header className="App-header">
@@ -23,7 +23,9 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <User name={user.name} />
-        <Page photos={page.photos} year={page.year} setYear={setYear} />
+        <div className='row'>
+          <Page photos={page.photos} year={page.year} getPhotos={getPhotos} fetching={page.fetching} />
+        </div>
       </div>
     );
   }
