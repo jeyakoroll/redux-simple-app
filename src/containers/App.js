@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import './App.css';
 import logo from '../logo.svg';
 import { connect } from 'react-redux';
-import './App.css';
+import User from '../components/User';
+import Page from '../components/Page';
+import * as pageActions from '../actions/PageActions';
+
+
 
 class App extends Component {
   render() {
-    const { name } = this.props.user
-    const { year, photos } = this.props.page
+    const { user, page } = this.props
+    const { setYear } = this.props.pageActions
     return (
       <div className="App">
         <header className="App-header">
@@ -16,10 +22,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <h2>
-          Привет из App, {name}!
-        </h2>
-        <p>У тебя {photos.length} фото за {year} год</p>
+        <User name={user.name} />
+        <Page photos={page.photos} year={page.year} setYear={setYear} />
       </div>
     );
   }
@@ -32,5 +36,11 @@ function mapStateToProps (state) {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    pageActions: bindActionCreators(pageActions, dispatch)
+  }
+}
+
 // export default App
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
